@@ -22,6 +22,7 @@ namespace Shopping2.Data
             await CheckCategoriesAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1020", "Cristian", "Marulanda", "cris@yopmail.com", "322 554 4032", "Calle Luna Calle Sol", UserType.Admin);
+            await CheckUserAsync("2020", "Jaun", "Rivera", "Juan@yopmail.com", "322 554 4037", "Calle Luna Calle Sol", UserType.User);
         }
 
         private async Task<User> CheckUserAsync( string document, string firstName, string lastName, string email, string phone, string address, UserType userType)

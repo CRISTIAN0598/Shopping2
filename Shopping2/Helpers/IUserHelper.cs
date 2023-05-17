@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Shopping2.Data.Entities;
+using Shopping2.Models;
 
 namespace Shopping2.Helpers
 {
@@ -14,6 +15,11 @@ namespace Shopping2.Helpers
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task LogoutAsync();
+
 
     }
 }
