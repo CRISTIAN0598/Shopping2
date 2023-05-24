@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
 
 namespace Shopping2.Data.Entities
@@ -12,6 +14,7 @@ namespace Shopping2.Data.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string Name { get; set; }
 
+        [JsonIgnore]
         public Country Country { get; set; }
 
         public ICollection<City> Cities { get; set;}
