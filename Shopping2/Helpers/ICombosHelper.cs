@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Shopping2.Data.Entities;
 
 namespace Shopping2.Helpers
 {
@@ -6,7 +7,9 @@ namespace Shopping2.Helpers
 	{
 		Task<IEnumerable<SelectListItem>> GetComboCategoriesAsync();
 
-		Task<IEnumerable<SelectListItem>> GetComboCountriesAsync();
+        Task<IEnumerable<SelectListItem>> GetComboCategoriesAsync(IEnumerable<Category> filter);
+
+        Task<IEnumerable<SelectListItem>> GetComboCountriesAsync();
 
 		Task<IEnumerable<SelectListItem>> GetComboStatesAsync(int countryId);
 
