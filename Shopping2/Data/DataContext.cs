@@ -22,6 +22,8 @@ namespace Shopping2.Data
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<State> States { get; set; }
 
+        public DbSet<TemporalSale> TemporalSales { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
