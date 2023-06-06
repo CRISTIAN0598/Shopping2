@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Shopping2.Data;
 using Shopping2.Data.Entities;
 using Shopping2.Helpers;
+using Vereyon.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +41,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 
-
+builder.Services.AddFlashMessage();
 builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
 builder.Services.AddScoped<ICombosHelper, CombosHelper>();
