@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shopping2.Data;
 using Shopping2.Data.Entities;
+using Vereyon.Web;
 
 namespace Shopping2.Controllers
 {
@@ -16,10 +17,12 @@ namespace Shopping2.Controllers
     public class CategoriesController: Controller
     {
         private readonly DataContext _context;
+        private readonly IFlashMessage _flashMessage;
 
-         public CategoriesController(DataContext context)
+        public CategoriesController(DataContext context,IFlashMessage flashMessage)
         {
             _context = context;
+            _flashMessage = flashMessage;
         }
 
         public async Task<IActionResult> Index()
@@ -53,16 +56,16 @@ namespace Shopping2.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Ya existe una categoría con el mismo nombre.");
+                        _flashMessage.Danger(string.Empty, "Ya existe una categoría con el mismo nombre.");
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                        _flashMessage.Danger(string.Empty, dbUpdateException.InnerException.Message);
                     }
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError(string.Empty, exception.Message);
+                    _flashMessage.Danger(string.Empty, exception.Message);
                 }
 
             }
@@ -108,16 +111,16 @@ namespace Shopping2.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Ya existe una categoría con el mismo nombre.");
+                        _flashMessage.Danger(string.Empty, "Ya existe una categoría con el mismo nombre.");
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                        _flashMessage.Danger(string.Empty, dbUpdateException.InnerException.Message);
                     }
                 }
                 catch (Exception exception)
                 {
-                    ModelState.AddModelError(string.Empty, exception.Message);
+                    _flashMessage.Danger(string.Empty, exception.Message);
                 }
 
             }
@@ -165,6 +168,7 @@ namespace Shopping2.Controllers
             var category = await _context.Category.FindAsync(id);
             _context.Category.Remove(category);
             await _context.SaveChangesAsync();
+            _flashMessage.Info("Registro borrado");
             return RedirectToAction(nameof(Index));
         }
     }
