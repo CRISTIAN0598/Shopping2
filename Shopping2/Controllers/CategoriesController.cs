@@ -37,22 +37,7 @@ namespace Shopping2.Controllers
         }
 
        
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var country = await _context.Category
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (country == null)
-            {
-                return NotFound();
-            }
-
-            return View(country);
-        }
+       
 
         [NoDirectAccess]
         public async Task<IActionResult> Delete(int? id)
@@ -136,6 +121,8 @@ namespace Shopping2.Controllers
 
             return Json(new { isValid = false, html = ModalHelper.RenderRazorViewToString(this, "AddOrEdit", category) });
         }
+
+
 
     }
 }
